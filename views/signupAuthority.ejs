@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIC-AI Sign Up</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="font-inter min-h-screen relative pb-10">
+
+  <div
+    class="fixed inset-0 bg-cover bg-center overflow-hidden -z-10"
+    style="background-image:url('https://c.animaapp.com/R7P3o6ZU/img/image.png')">
+    <div class="absolute inset-0 bg-white/60"></div>
+  </div>
+
+  <header class="relative z-10 bg-gradient-to-b from-[#0f2f4f] via-[#5b7ea3] to-transparent rounded-b-[48px]">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between px-12 py-6 text-white">
+      <div class="flex items-center gap-4">
+        <img
+          src="https://c.animaapp.com/R7P3o6ZU/img/chatgpt-image-jan-2--2026--11-51-48-pm-1@2x.png"
+          class="w-11 h-11"
+          alt="logo"
+        />
+        <div>
+          <div class="text-lg font-semibold">CIVIC - AI</div>
+          <div class="text-sm opacity-80 font-poppins">
+            Issue Detection & Resolution Platform
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex gap-16 text-lg font-poppins">
+        <a href="/" class="cursor-pointer">Home</a>
+        <a class="cursor-pointer">How it Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10 flex justify-center items-center min-h-[calc(100vh-120px)] px-6 py-10">
+
+    <section class="w-[746px] h-auto min-h-[600px] bg-[#eaf4ff] rounded-[44px] px-14 py-10 shadow-xl">
+
+      <div class="relative flex justify-center gap-40 text-lg font-medium mb-8">
+        <span class="text-[#102746]">Authority</span>
+        <a href="/signup/citizen" class="text-gray-500">Citizen</a>
+
+        <div class="absolute bottom-[-14px] left-0 w-full h-[2px] bg-blue-400/60"></div>
+        <div class="absolute bottom-[-14px] left-1/2 -translate-x-[210px] w-[220px] h-[3px] bg-[#102746] rounded-full"></div>
+      </div>
+
+      <h1 class="text-center text-[36px] font-semibold text-[#102746] mb-8">
+        Sign Up
+      </h1>
+
+      <% if (locals.errorMessage) { %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6 text-sm max-w-md mx-auto text-center">
+            <p><%= errorMessage %></p>
+          </div>
+        <% } %>
+
+      <form method="POST" action="/signup/authority" class="space-y-5">
+
+        <div>
+          <label class="block text-[#102746] font-medium mb-1">
+            Full Name
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              required
+              class="w-full h-[48px] pl-12 pr-4 rounded-2xl border border-[#d5e6f7] bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#102746]"
+            />
+            <img
+              src="https://c.animaapp.com/R7P3o6ZU/img/icon.svg"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-70"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[#102746] font-medium mb-1">
+            Email ID
+          </label>
+          <div class="relative">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              class="w-full h-[48px] pl-12 pr-4 rounded-2xl border border-[#d5e6f7] bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#102746]"
+            />
+            <img
+              src="https://c.animaapp.com/R7P3o6ZU/img/icon.svg"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-70"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[#102746] font-medium mb-1">
+            Password
+          </label>
+          <div class="relative">
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              class="w-full h-[48px] pl-12 pr-4 rounded-2xl border border-[#d5e6f7] bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#102746]"
+            />
+            <img
+              src="https://c.animaapp.com/R7P3o6ZU/img/icon-1.svg"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-70"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[#102746] font-medium mb-1">
+            Security Code
+          </label>
+          <div class="relative">
+            <input
+              type="password"
+              name="code"
+              placeholder="Enter your security code"
+              required
+              class="w-full h-[48px] pl-12 pr-4 rounded-2xl border border-[#d5e6f7] bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#102746]"
+            />
+            <img
+              src="https://c.animaapp.com/R7P3o6ZU/img/icon-1.svg"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-70"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full h-[50px] bg-[#102746] text-white rounded-2xl font-medium text-lg hover:bg-[#0c1f33] transition mt-2"
+        >
+          Sign Up
+        </button>
+
+
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

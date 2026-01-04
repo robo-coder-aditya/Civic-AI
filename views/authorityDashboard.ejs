@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIVIC-AI - Authority Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'civic-bg': '#f9fafb',
+                        'civic-dark': '#102746',
+                        'civic-text-main': '#101828',
+                        'civic-text-gray': '#6a7282',
+                        'civic-text-light': '#4a5565',
+                    },
+                    boxShadow: {
+                        'stat-card': '0px 2px 4px -2px rgba(0,0,0,0.1)',
+                        'table': '0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Header Gradient - Adjusted to match the requested blue shades */
+        .header-bg-gradient {
+            background: linear-gradient(180deg, #1e3a5f 0%, #2c5282 45%, rgba(44, 82, 130, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen font-sans overflow-x-hidden">
+
+    <div class="relative w-full h-[144px] overflow-hidden">
+        <div class="absolute inset-0 w-full h-full header-bg-gradient backdrop-blur-[18.95px] z-0"></div>
+        
+        <div class="relative z-10 h-full flex justify-between items-center px-6 md:px-10 text-white">
+            
+            <div class="flex items-center gap-5">
+                    <img class="w-[70px] h-[65px] object-contain" src="/assets/logo.png" alt="Logo" onerror="this.src='https://placehold.co/87x78?text=Logo'">
+                <div class="flex flex-col">
+                    <h1 class="font-inter font-bold text-2xl tracking-wide mb-1">CIVIC - AI</h1>
+                    <p class="font-poppins text-base opacity-90 tracking-wide">Issue Detection & Resolution Platform</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <img class="w-12 h-12 object-cover rounded-full border-2 border-white/20" src="/assets/Profile.png" alt="Profile">
+                <div class="hidden sm:flex flex-col text-right">
+                    <p class="text-[15px] text-[#e5f1ff] tracking-wide opacity-80">Authority</p>
+                    <p class="font-bold text-xl tracking-wide"><%= name %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white px-6 md:px-[100px] py-10">
+        <h2 class="text-3xl md:text-[40px] text-civic-dark font-bold mb-4">Welcome to CIVIC-AI !</h2>
+        <p class="text-xl text-[#474747] leading-relaxed max-w-[655px]">
+            Monitor, prioritize and resolve campus issues efficiently. Take informed actions to ensure a safe and well-managed campus.
+        </p>
+    </div>
+
+    <div class="bg-civic-bg py-10 px-6 md:px-[65px] min-h-screen">
+        
+        <div class="mb-10">
+            <h3 class="text-[32px] text-civic-dark leading-9 font-normal">Authority Dashboard</h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            
+            <div class="bg-white rounded-[10px] shadow-stat-card p-6 border-b-4 border-red-500">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-civic-text-gray text-base">High Priority</p>
+                        <p class="text-civic-text-main text-base"><%= stats.high %></p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-500">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.73 18L13.73 4C13.5556 3.6922 13.3026 3.43619 12.9969 3.25807C12.6912 3.07995 12.3438 2.9861 11.99 2.9861C11.6362 2.9861 11.2888 3.07995 10.9831 3.25807C10.6774 3.43619 10.4244 3.6922 10.25 4L2.25 18C2.07368 18.3054 1.98123 18.6519 1.98201 19.0045C1.98279 19.3571 2.07678 19.7032 2.25445 20.0078C2.43211 20.3124 2.68715 20.5646 2.9937 20.7388C3.30024 20.9131 3.64741 21.0032 4 21H20C20.3509 20.9996 20.6955 20.907 20.9993 20.7313C21.303 20.5556 21.5552 20.3031 21.7305 19.9991C21.9058 19.6951 21.998 19.3504 21.9979 18.9995C21.9979 18.6486 21.9054 18.3039 21.73 18Z"></path>
+                            <path d="M12 9V13"></path>
+                            <path d="M12 17H12.01"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[10px] shadow-stat-card p-6 border-b-4 border-amber-500">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-civic-text-gray text-base">Medium Priority</p>
+                        <p class="text-civic-text-main text-base"><%= stats.medium %></p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-500">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path>
+                            <path d="M12 8V12"></path>
+                            <path d="M12 16H12.01"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[10px] shadow-stat-card p-6 border-b-4 border-blue-500">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-civic-text-gray text-base">Low Priority</p>
+                        <p class="text-civic-text-main text-base"><%= stats.medium %></p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path>
+                            <path d="M12 16V12"></path>
+                            <path d="M12 8H12.01"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[10px] shadow-stat-card p-6 border-b-4 border-gray-500">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-civic-text-gray text-base">Unresolved Complaints</p>
+                        <p class="text-civic-text-main text-base"><%= stats.unresolved %></p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-base">
+                        📋
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-[10px] shadow-table p-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <h4 class="text-base text-civic-text-main font-normal">All Complaints</h4>
+                
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    
+                    <div class="flex items-center gap-2">
+                        <label class="text-civic-text-light text-base whitespace-nowrap">Status:</label>
+                        <div class="flex gap-3 text-sm font-medium">
+                            <a href="/authorityDashboard"
+                            class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100">
+                            All
+                            </a>
+
+                            <a href="/authorityDashboard/registered"
+                            class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100">
+                            Registered
+                            </a>
+
+                            <a href="/authorityDashboard/inProgress"
+                            class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100">
+                            In Progress
+                            </a>
+
+                            <a href="/authorityDashboard/resolved"
+                            class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100">
+                            Resolved
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-[22px] px-4 font-bold text-base text-civic-text-gray">Complaint ID</th>
+                            <th class="text-left py-[22px] px-4 font-bold text-base text-civic-text-gray">Issue</th>
+                            <th class="text-left py-[22px] px-4 font-bold text-base text-civic-text-gray">Priority</th>
+                            <th class="text-left py-[22px] px-4 font-bold text-base text-civic-text-gray">Status</th>
+                            <th class="text-left py-[22px] px-4 font-bold text-base text-civic-text-gray">Submitted On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (complaints.length === 0) { %>
+                            <tr>
+                            <td colspan="5" class="py-10 text-center text-gray-500">
+                                No complaints
+                            </td>
+                            </tr>
+                        <% } %>
+
+                        <% complaints.forEach(c => { %>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+
+                            <!-- Complaint ID -->
+                            <td class="py-[38px] px-4 text-base text-civic-text-main">
+                                <a
+                                    href="/complaints/<%= c.id %>"
+                                    class="text-blue-600 hover:underline font-medium"
+                                >
+                                    #<%= c.id %>
+                                </a>
+                            </td>
+                            <!-- Location -->
+                            <td class="py-[38px] px-4 text-sm text-civic-text-gray">
+                                <%= c.issue_type
+                                    ? c.issue_type
+                                    : "NULL" %>
+                            </td>
+
+                            <!-- Priority -->
+                            <td class="py-[38px] px-4">
+                                <span class="
+                                inline-block px-3 py-1 rounded-full text-sm border
+                                <%= c.priority === 'high'
+                                    ? 'bg-red-100 text-red-500 border-red-300'
+                                    : c.priority === 'medium'
+                                    ? 'bg-amber-100 text-amber-500 border-amber-300'
+                                    : 'bg-blue-100 text-blue-500 border-blue-300'
+                                %>
+                                ">
+                                <%= c.priority
+                                    ? c.priority.charAt(0).toUpperCase() + c.priority.slice(1)
+                                    : "NULL"
+                                %>
+
+                                </span>
+                            </td>
+
+                            <!-- Status -->
+                            <td class="py-[38px] px-4">
+                                <span class="inline-block px-3 py-1 rounded-full text-sm
+                                bg-gray-100 border border-gray-300 text-gray-600">
+                                <%= c.status %>
+                                </span>
+                            </td>
+
+                            <!-- Submitted On -->
+                            <td class="py-[38px] px-4 text-sm text-civic-text-gray">
+                                <%= c.created_date %>
+                            </td>
+
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

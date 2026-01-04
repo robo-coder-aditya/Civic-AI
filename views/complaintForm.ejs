@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | CIVIC - AI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        civic: {
+                            dark: '#102746',
+                            blue: '#155dfc',
+                            light: '#e5f1ff',
+                            border: '#d0d5db',
+                            text: '#495565',
+                            label: '#354152',
+                            red: '#ea1935'
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0px 2px 4px -2px rgba(0,0,0,0.1), 0px 4px 6px -1px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#f9fafb] min-h-screen font-sans">
+
+    <div class="relative w-full h-[144px] bg-white overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#061e3f]/85 via-[#2760ac]/17 to-transparent backdrop-blur-md z-0"></div>
+        
+        <div class="relative z-10 container mx-auto px-6 h-full flex justify-between items-center">
+            
+            <div class="flex items-center gap-6">
+                <img class="w-[87px] h-[78px] object-contain" src="https://c.animaapp.com/pK2Qe2nZ/img/chatgpt-image-jan-2--2026--11-51-48-pm-1@2x.png" alt="Logo">
+                <div class="text-white">
+                    <h1 class="font-bold text-2xl tracking-wide font-sans">CIVIC - AI</h1>
+                    <p class="font-poppins text-base opacity-90 tracking-wide">Issue Detection & Resolution Platform</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <div class="text-[#e5f1ff] text-[15px] tracking-wide">Citizen</div>
+                    <div class="text-white font-bold text-xl tracking-wide"><%= name %></div>
+                </div>
+                <img class="w-16 h-16 rounded-full object-cover border-2 border-white/20" src="/assets/Profile.png" alt="Profile">
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-10 max-w-6xl">
+        
+        <div class="mb-8">
+            <h2 class="text-civic-dark font-bold text-3xl md:text-[40px] leading-tight mb-2">Welcome to CIVIC-AI !</h2>
+            <p class="text-[#474747] text-lg md:text-xl font-normal leading-normal max-w-3xl">
+                Report campus issues , track their progress , and be part of building a safer , smarter campus for everyone.
+            </p>
+        </div>
+
+        <div class="w-full bg-white rounded-[10px] shadow-card flex flex-col">
+            
+            <div class="flex border-b border-black/10 bg-white rounded-t-[10px]">
+                <button class="px-8 py-4 border-b-[3px] border-civic-blue text-civic-blue font-medium text-base text-center w-full md:w-auto transition-colors hover:bg-blue-50">
+                    Submit Complaint
+                </button>
+                <a href="/citizenViewComplaints" class="px-8 py-4 border-b-[3px] border-transparent text-[#697282] font-medium text-base text-center w-full md:w-auto transition-colors hover:text-civic-blue hover:bg-gray-50">
+                    Track Complaints
+                </a >
+            </div>
+
+            <div class="p-8">
+                <div class="mb-6">
+                    <h3 class="text-[#101727] text-lg font-medium">Submit a Complaint</h3>
+                    <p class="text-civic-text text-base mt-1">Describe the issue you're facing and our team will work to resolve it as soon as possible.</p>
+                </div>
+
+                <% if (locals.errorMessage) { %>
+                    <p class="text-red-600 text-sm text-center mb-4">
+                        <%= errorMessage %>
+                    </p>
+                <% } %>
+
+                <form class="flex flex-col gap-6" action="/complaints" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="flex flex-col gap-2">
+                        <label for="issue_description" class="flex items-center gap-2">
+                            <img class="w-5 h-5" src="https://c.animaapp.com/pK2Qe2nZ/img/icon.svg" alt="icon">
+                            <span class="text-civic-label font-medium">Issue Description <span class="text-civic-red">*</span></span>
+                        </label>
+                        <textarea 
+                            id="issue_description"
+                            name="description"
+                            class="w-full h-[170px] p-4 border-[0.8px] border-civic-border rounded-[10px] text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-civic-blue/50 resize-none" 
+                            placeholder="Please describe the issue in detail..."></textarea>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="location" class="flex items-center gap-2">
+                            <img class="w-5 h-5" src="https://c.animaapp.com/pK2Qe2nZ/img/icon-1.svg" alt="icon">
+                            <span class="text-civic-label font-medium">Location <span class="text-civic-red">*</span></span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="location"
+                            name="location"
+                            class="w-full h-[50px] p-4 border-[0.8px] border-civic-border rounded-[10px] text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-civic-blue/50" 
+                            placeholder="e.g., Building A, Room 203 or Main Campus Library (mention the exact location)">
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="flex items-center gap-2">
+                            <img class="w-5 h-5" src="https://c.animaapp.com/pK2Qe2nZ/img/icon-2.svg" alt="icon">
+                            <span class="text-civic-label font-medium">Upload Image <span class="text-civic-red">*</span></span>
+                        </label>
+                        
+                        <div class="relative w-full h-[175px] border-[1.6px] border-dashed border-civic-border rounded-[10px] flex flex-col justify-center items-center hover:bg-gray-50 transition-colors group">
+                            
+                            <input 
+                                type="file" 
+                                id="image_upload" 
+                                name="image"
+                                accept="image/jpeg, image/jpg"
+                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                            >
+                            
+                            <div class="flex flex-col items-center gap-3 z-10 pointer-events-none">
+                                <img class="w-12 h-12 opacity-80 group-hover:scale-110 transition-transform" src="https://c.animaapp.com/pK2Qe2nZ/img/icon-3.svg" alt="upload">
+                                <div class="text-center">
+                                    <p class="text-civic-text text-base font-medium">Click to upload or drag and drop</p>
+                                    <p class="text-[#99a1ae] text-sm mt-1">JPG up to 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-4 mt-4">
+                        <button type="submit" class="flex-1 bg-civic-blue text-white h-[50px] rounded-[10px] font-medium text-base hover:bg-blue-700 transition-colors shadow-sm">
+                            Submit Complaint
+                        </button>
+                        <button type="reset" class="w-full md:w-[145px] bg-white text-[#354152] h-[50px] rounded-[10px] border-[0.8px] border-civic-border font-medium text-base hover:bg-gray-50 transition-colors">
+                            Clear Form
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        
+
+    </main>
+
+</body>
+</html>

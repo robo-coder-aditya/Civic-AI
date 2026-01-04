@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIVIC - AI | Login</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          inter: ['Inter', 'sans-serif'],
+        },
+        extend: {
+          colors: {
+            primary: '#0F172A',
+            accent: '#3B82F6',
+            textMuted: '#475569',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-inter min-h-screen flex flex-col relative text-white
+             bg-[url('/assets/nitr.png')] bg-cover bg-center">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#0F172A]/80 via-[#0F172A]/40 to-transparent"></div>
+
+  <!-- Navbar -->
+  <header class="relative z-10 bg-gradient-to-b from-[#0f2f4f] via-[#5b7ea3] to-transparent rounded-b-[48px]">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between px-12 py-6 text-white">
+      <div class="flex items-center gap-4">
+        <img
+          src="https://c.animaapp.com/R7P3o6ZU/img/chatgpt-image-jan-2--2026--11-51-48-pm-1@2x.png"
+          class="w-11 h-11"
+          alt="logo"
+        />
+        <div>
+          <div class="text-lg font-semibold">CIVIC - AI</div>
+          <div class="text-sm opacity-80 font-poppins">
+            Issue Detection & Resolution Platform
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex gap-16 text-lg font-poppins">
+        <a href="/" class="cursor-pointer">Home</a>
+        <a class="cursor-pointer">How it Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="relative z-10 flex-1 flex justify-center items-center px-4 pb-16">
+
+    <!-- Login Card -->
+    <div class="w-full max-w-[460px] rounded-3xl bg-[#E2EFFF]/90 backdrop-blur-xl
+                shadow-2xl overflow-hidden text-center">
+
+      <!-- Tabs -->
+      <div class="flex border-b border-blue-200/40">
+        <a href = "/signup/authority" class="flex-1 py-5 text-textMuted font-medium hover:bg-white/30">
+          Authority
+        </a >
+        <button class="flex-1 py-5 font-semibold text-primary relative">
+          Citizen
+          <span class="absolute bottom-0 left-0 w-full h-[3px] bg-primary"></span>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="px-8 py-10 text-primary">
+        <h2 class="text-3xl font-bold mb-2">Sign Up</h2>
+        <p class="text-textMuted mb-8">Sign Up using your Google account</p>
+
+        <!-- Google Button -->
+        <a href="/auth/google"
+          class="w-full flex items-center justify-center gap-3 bg-white border border-slate-300
+                 rounded-xl py-3 font-medium text-slate-800
+                 shadow hover:shadow-lg hover:-translate-y-0.5 transition">
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            class="w-5 h-5"
+            alt="Google"
+          />
+          Sign Up with Google
+      </a>
+
+        
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

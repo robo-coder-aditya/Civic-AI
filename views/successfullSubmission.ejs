@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | CIVIC - AI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        civic: {
+                            dark: '#102746',
+                            blue: '#155dfc',
+                            lightBlue: '#e5f1ff',
+                            textGray: '#474747',
+                            tabInactive: '#697282',
+                            success: '#3c9f3a',
+                            border: '#d0d5db',
+                        }
+                    },
+                    backgroundImage: {
+                        // UPDATED: Extended the dark color stop to 40% to ensure text readability
+                        'header-gradient': 'linear-gradient(180deg, rgba(6, 30, 63, 0.95) 0%, rgba(6, 30, 63, 0.90) 40%, rgba(39, 96, 172, 0.17) 85%, rgba(39, 96, 172, 0) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white h-screen w-screen overflow-hidden font-sans flex flex-col">
+
+    <header class="relative w-full h-[100px] shrink-0">
+        <div class="absolute inset-0 w-full h-full bg-header-gradient backdrop-blur-[18px] z-0"></div>
+        
+        <div class="relative z-10 w-full px-10 h-full flex justify-between items-start pt-2">
+            
+            <div class="flex items-center gap-6">
+                <img class="w-[70px] h-[65px] object-contain" src="/assets/logo.png" alt="Logo" onerror="this.src='https://placehold.co/87x78?text=Logo'">
+                <div class="text-white">
+                    <h1 class="font-bold text-2xl tracking-wide">CIVIC - AI</h1>
+                    <p class="font-poppins text-sm opacity-90 tracking-wide text-white drop-shadow-sm">Issue Detection & Resolution Platform</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <div class="text-civic-lightBlue text-[13px] tracking-wide">Citizen</div>
+                    <div class="text-white font-bold text-lg tracking-wide"><%= name %></div>
+                </div>
+                <img class="w-12 h-12 object-cover rounded-full border-2 border-white/20" src="/assets/Profile.png" alt="Profile">
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full px-10 py-4 flex flex-col flex-1 min-h-0">
+        
+        <div class="mb-4 shrink-0">
+            <h2 class="text-civic-dark font-bold text-3xl leading-tight mb-1">Welcome to CIVIC-AI !</h2>
+            <p class="text-civic-textGray text-lg font-normal leading-normal max-w-4xl">
+                Report campus issues , track their progress , and be part of building a safer , smarter campus for everyone.
+            </p>
+        </div>
+
+        <div class="bg-[#f9fafb] rounded-t-xl w-full flex-1 flex flex-col items-center shadow-sm border border-gray-100 overflow-hidden">
+            
+            <div class="w-full bg-white border-b border-black rounded-t-[10px] shadow-sm flex px-8 pt-2 shrink-0">
+                <button class="px-6 py-3 border-b-2 border-[#2b7fff] text-[#155cfb] font-normal text-base text-center transition-colors">
+                    Submit Complaint
+                </button>
+                <a href="/citizenViewComplaints" class="px-6 py-3 border-b-2 border-transparent text-civic-tabInactive font-normal text-base text-center hover:text-civic-blue transition-colors">
+                    Track Complaints
+                </a>
+            </div>
+
+            <div class="w-full flex-1 flex flex-col items-center justify-center gap-8 px-10 py-4">
+                
+                <div class="w-full max-w-5xl bg-civic-success text-white rounded-[18px] py-8 px-4 flex flex-col items-center justify-center text-center shadow-md">
+                    <h3 class="font-bold text-2xl leading-relaxed">
+                        You have successfully submitted your issue<br>
+                        we will resolve it shortly
+                    </h3>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-[#3c3c3c] font-bold text-2xl">
+                        Your complaint ID is #<%= cId %>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-4 shrink-0 w-full">
+            <a href="/complaintDashboard" class="w-full h-[50px] flex items-center px-4 border-[0.8px] border-civic-border rounded-[10px] bg-white hover:bg-gray-50 transition shadow-sm">
+                <span class="text-civic-blue font-bold text-lg">+&nbsp;&nbsp;Submit another complaint</span>
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>
