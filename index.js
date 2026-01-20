@@ -307,7 +307,7 @@ app.post("/complaints", isCitizen,upload.single("image"), async(req, res) =>{
     
     const mlResponse = await axios.post(ML_API, formData, {
       headers: formData.getHeaders(),
-      timeout: 200000, 
+      timeout: 30000, 
     });
 
     const issue = mlResponse.data.issue;
