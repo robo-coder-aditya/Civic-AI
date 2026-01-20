@@ -1,5 +1,7 @@
 import passport from "passport";
 import dotenv from "dotenv";
+dotenv.config();
+console.log("DB URL loaded:", !!process.env.DATABASE_URL);
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import express from "express";
 import session from "express-session";
@@ -14,11 +16,11 @@ import pgSession from "connect-pg-simple"
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "./config/cloudinary.js";
 
+
 const ML_API = process.env.ML_API_CONNECT;
 
 const app = express();
 const port = 3000;
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,7 +32,7 @@ app.use(express.static("public"));
 
 const PgSession = pgSession(session);
 
-const db = new pg.Client({
+const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
@@ -60,7 +62,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-await db.connect();
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -303,9 +304,10 @@ app.post("/complaints", isCitizen,upload.single("image"), async(req, res) =>{
     formData.append("text", description);
     formData.append("location", location);
 
+    
     const mlResponse = await axios.post(ML_API, formData, {
       headers: formData.getHeaders(),
-      timeout: 100000, 
+      timeout: 200000, 
     });
 
     const issue = mlResponse.data.issue;
